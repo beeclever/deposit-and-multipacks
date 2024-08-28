@@ -1,0 +1,4 @@
+{"level":"info","message":"Logger info demo"}
+{"level":"warn","message":"Logger warn demo"}
+{"level":"error","message":"Logger error demo"}
+{"level":"debug","message":"Logger debug demo"}

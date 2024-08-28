@@ -1,0 +1,14 @@
+{
+  "name": "pretoml",
+  "version": "1.0.2",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "node scripts/test.mjs"
+  },
+  "author": "André Neder",
+  "license": "ISC",
+  "description": "",
+  "bin": {
+    "pretoml": "scripts/cli.mjs"
+  }
+}

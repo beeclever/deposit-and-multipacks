@@ -1,0 +1,12 @@
+name: Deploy main
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    uses: beeclever/actions/.github/workflows/deploy-shopify-app.yml@v2
+    with:
+      config-name: "example"
+      SHOPIFY_APP_URL: "https://funky-whole-arachnid.ngrok-free.app"
+    secrets: inherit
