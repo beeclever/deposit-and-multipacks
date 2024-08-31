@@ -15,7 +15,6 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       if (session) {
         await db.session.deleteMany({ where: { shop } });
       }
-
       break;
     case "CUSTOMERS_DATA_REQUEST":
     case "CUSTOMERS_REDACT":

@@ -1,1 +1,5 @@
-{"hello":"Hallo","nested":{"translation":"Verschachtelte Übersetzung"}}
+{
+  "app":{
+    "name": "Pfand & Multipacks"
+  }
+}

@@ -19,8 +19,7 @@ export default function SettingsPage() {
   const [hasChanges, setHasChanges] = useState(false)
 
   return (
-    <Page>
-      <TitleBar title="Settings" />
+    <Page title="Settings">
 
       <AppSaveBar show={hasChanges} onSave={() => setHasChanges(false)} onDiscard={() => setHasChanges(false)}/>
 

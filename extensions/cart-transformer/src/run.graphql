@@ -1,0 +1,33 @@
+query RunInput {
+  cart {
+    lines {
+      id
+      quantity
+      cost{
+        amountPerQuantity{
+          amount
+        }
+      }
+      merchandise{
+        __typename
+        ... on ProductVariant{
+          id
+          deposit: metafield(namespace: "$app", key: "deposit"){
+            value
+          }
+          multipackQuantity: metafield(namespace: "$app", key: "quantity"){
+            value
+          }
+          multipackBaseVariant: metafield(namespace: "$app", key: "base_variant"){
+            value
+          }
+        }
+      }
+    }
+  }
+  cartTransform{
+    config: metafield(namespace: "$app", key: "configuration"){
+      jsonValue
+    }
+  }
+}
