@@ -19,8 +19,6 @@ import {
 import { TitleBar, useAppBridge } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
 import logger from "~/logger.server";
-import { useTranslation } from "react-i18next";
-import i18n from '~/i18n.server'
 import { ShopifyAPI } from "clever_tools";
 import { install } from "~/app.server";
 
@@ -38,7 +36,6 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 };
 
 export default function Index() {
-  const { t, i18n } = useTranslation();
   const nav = useNavigation();
   const actionData = useActionData<typeof action>();
   const submit = useSubmit();

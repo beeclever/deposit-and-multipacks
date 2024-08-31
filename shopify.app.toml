@@ -3,7 +3,7 @@
 client_id = "c863672661594d3bdcccdcd2416b1e4d"
 name = "Deposit & Multipacks"
 handle = "deposit-and-multipacks"
-application_url = "https://russell-metallica-smooth-wires.trycloudflare.com"
+application_url = "https://britney-proposition-can-friends.trycloudflare.com"
 embedded = true
 
 [build]
@@ -21,9 +21,9 @@ scopes = "write_cart_transforms,write_products"
 
 [auth]
 redirect_urls = [
-  "https://russell-metallica-smooth-wires.trycloudflare.com/auth/callback",
-  "https://russell-metallica-smooth-wires.trycloudflare.com/auth/shopify/callback",
-  "https://russell-metallica-smooth-wires.trycloudflare.com/api/auth/callback"
+  "https://britney-proposition-can-friends.trycloudflare.com/auth/callback",
+  "https://britney-proposition-can-friends.trycloudflare.com/auth/shopify/callback",
+  "https://britney-proposition-can-friends.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

@@ -1,5 +1,6 @@
 import { ActionFunctionArgs, redirect } from "@remix-run/node";
 import { json, useActionData, useNavigate, useNavigation, useSubmit } from "@remix-run/react";
+import { useAppBridge } from "@shopify/app-bridge-react";
 import {
   Box,
   Card,
@@ -19,18 +20,52 @@ import { ShopifyAPI } from "clever_tools";
 import { useState } from "react";
 import { AppSaveBar } from "~/components/AppSaveBar";
 import { ResourceIdPicker } from "~/components/ResourceIdPicker";
+import { getCurrentAppInstallationWithMetafield, setMetafields } from "~/helpers.server";
 import { useLazyQuery, useQuery } from "~/hooks/query";
 import { authenticate } from "~/shopify.server";
 import { fetchGraphql } from "~/utils/fetchGraphql";
 
 const BACK = '/app/multipacks'
 
+// Todo: Multipack of a complete product
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
   
   const data = await request.json()
   console.log(data)
+
+  const baseVariantResult = await admin.graphql(`query productVariant($id: ID!){
+    productVariant(id: $id) {
+      title
+      price
+      product{
+        id
+        options(first: 3){
+          id
+          name
+          optionValues{
+            id
+            name
+          }
+        }
+      }
+      selectedOptions{
+        name
+        value
+      }
+      deposit: metafield(namespace: "$app", key: "deposit"){
+        value
+      }
+    }
+  }`, {
+      variables:{
+        id: data.variant
+      }
+  }).then(res => res.json())
+
+  const baseVariant: ShopifyAPI.ProductVariant = baseVariantResult.data.productVariant
+
 
   const productCreateResult = await admin.graphql(`
     mutation productCreate($input: ProductInput!){
@@ -62,21 +97,6 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   const product = productCreateResult.data.productCreate.product
 
-  const baseVariantResult = await admin.graphql(`query productVariant($id: ID!){
-    productVariant(id: $id) {
-      title
-      price
-      deposit: metafield(namespace: "$app", key: "deposit"){
-        value
-      }
-    }
-  }`, {
-      variables:{
-        id: data.variant
-      }
-  }).then(res => res.json())
-
-  const baseVariant = baseVariantResult.data.productVariant
 
   const variants = await admin.graphql(`query productVariants($query: String!) {
     productVariants(query: $query, first: 100) {
@@ -130,14 +150,27 @@ export const action = async ({ request }: ActionFunctionArgs) => {
             {
               namespace: "$app",
               key: "deposit",
+              // @ts-ignore
               value: String(baseVariant.deposit?.value ?? ""),
             }
           ]
         }
       }
   }).then(res => res.json())
-
+  
   console.log(updateVariantsResult)
+
+  const currentAppInstallation = await getCurrentAppInstallationWithMetafield(admin, "app_data", "multipacks")
+  const multipacks: string[] = JSON.parse(currentAppInstallation.metafield?.value ?? "[]")
+  await setMetafields(admin, [
+    {
+      key: 'multipacks',
+      namespace: 'app_data',
+      type: 'list.product_reference',
+      ownerId: currentAppInstallation.id,
+      value: JSON.stringify([...multipacks, product.id])
+    }
+  ])
 
   return json({
     productUrl: `shopify://admin/products/${product.id}`
@@ -153,21 +186,19 @@ export default function NewMultipack() {
 
   if(!!actionData?.productUrl){
     // Todo: Fix redirect
-    navigate(actionData.productUrl)
+    // navigate(actionData.productUrl) 
   }
 
   const [title, setTitle] = useState("")
   const [variant, setVariant] = useState("")
   const [quantity, setQuantity] = useState("")
+  const nav = useNavigation();
+  const isLoading = ["loading", "submitting"].includes(nav.state) && nav.formMethod === "POST";
 
   const readyToSubmit = () : boolean => {
     return title != "" && variant != "" && !!variant && quantity != ""
   }
 
-
-
-  const nav = useNavigation();
-  const isLoading = ["loading", "submitting"].includes(nav.state) && nav.formMethod === "POST";
 
   return isLoading ? <Spinner></Spinner> : (
     <Page backAction={{

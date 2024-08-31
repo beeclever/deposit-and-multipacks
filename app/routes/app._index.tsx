@@ -21,12 +21,10 @@ import { TitleBar, useAppBridge } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
 import logger from "~/logger.server";
 import { useTranslation } from "react-i18next";
-import i18n from '~/i18n.server'
 import { ShopifyAPI } from "clever_tools";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   await authenticate.admin(request);
-  i18n.t('app.name')
   return null;
 };
 

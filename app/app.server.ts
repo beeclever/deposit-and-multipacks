@@ -1,4 +1,4 @@
-import { MetafieldOwnerType } from "clever_tools/src/types/graphql/2024-04"
+import { MetafieldOwnerType } from "clever_tools/src/types/graphql/2024-07"
 import { createCartTransform, getCurrentAppInstallationWithMetafield, metafieldDefinitionUpsert, setMetafields, variantDelete } from "./helpers.server"
 import { AdminApiContext } from "@shopify/shopify-app-remix/server"
 import logger from "./logger.server"
@@ -269,4 +269,5 @@ export const install = async (admin: AdminApiContext) => {
     }
   ])
   logger.info(`done.`)
+
 }

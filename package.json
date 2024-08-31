@@ -34,7 +34,7 @@
     "@shopify/polaris": "^12.0.0",
     "@shopify/polaris-icons": "^9.2.0",
     "@shopify/react-form": "^2.6.0",
-    "@shopify/shopify-api": "^11.0.0",
+    "@shopify/shopify-api": "^11.3.0",
     "@shopify/shopify-app-remix": "^3.0.0",
     "@shopify/shopify-app-session-storage-prisma": "^5.0.0",
     "clever_tools": "github:beeclever/clever_tools",

@@ -9,12 +9,31 @@ import {
   BlockStack,
   ResourceList,
   EmptyState,
+  ResourceItem,
+  FooterHelp,
 } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
+import { getCurrentAppInstallationWithMetafield } from "~/helpers.server";
+import { authenticate } from "~/shopify.server";
+import { json, LoaderFunctionArgs } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const {admin} = await authenticate.admin(request);
+  const currentAppInstallation = await getCurrentAppInstallationWithMetafield(admin, "app_data", "multipacks")
+  const multipacks: string[] = JSON.parse(currentAppInstallation.metafield?.value ?? "[]")
+  return json({
+    multipacks
+  });
+};
 
 export default function Multipacks() {
 
-  const multipacks: any[] = []
+  const loaderData = useLoaderData<typeof loader>()
+
+  const multipacks: any[] = loaderData.multipacks
+
+  console.log(multipacks)
 
   return (
     <Page title="Multipacks"  
@@ -39,11 +58,17 @@ export default function Multipacks() {
               </p>
             </EmptyState>}
               items={multipacks}
-              renderItem={() => <></>}
+              renderItem={(id) => <ResourceItem id={id} onClick={() => {}}>{id}</ResourceItem>}
               resourceName={{singular: 'Multipack', plural: 'Multipacks'}}
             />
         </BlockStack>
       </Card>
+      {/* <FooterHelp>
+        Learn more about{' '}
+        <Link url="./advanced">
+          Multipacks
+        </Link>
+      </FooterHelp> */}
     </Page>
   );
 }

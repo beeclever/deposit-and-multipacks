@@ -8,6 +8,7 @@ import '@shopify/discount-app-components/build/esm/styles.css';
 import polarisStyles from "@shopify/polaris/build/esm/styles.css?url";
 import {AppProvider as DiscountsProvider} from '@shopify/discount-app-components';
 
+import i18n from '~/i18n.server'
 import { authenticate } from "../shopify.server";
 
 export const links = () => [
@@ -17,7 +18,7 @@ export const links = () => [
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   await authenticate.admin(request);
-
+  const language = i18n.language
   return json({ apiKey: process.env.SHOPIFY_API_KEY || "" });
 };
 
