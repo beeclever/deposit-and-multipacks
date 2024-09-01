@@ -43,8 +43,9 @@ export default function Index() {
   const shopify = useAppBridge();
   const isLoading = ["loading", "submitting"].includes(nav.state) && nav.formMethod === "POST";
   const [learnMoreOpen, setLearnMoreOpen] = useState(false)
+  // t('app.name')
   return (
-    <Page title={t('app.name')}>
+    <Page title={"Beverage Deposit & Multipacks"}>
       <Layout>
         <Layout.Section>
           <BlockStack gap="500">

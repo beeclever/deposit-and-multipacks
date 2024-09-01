@@ -1,9 +1,9 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "c863672661594d3bdcccdcd2416b1e4d"
-name = "Deposit & Multipacks"
+name = "Beverage Deposit & Multipacks"
 handle = "deposit-and-multipacks"
-application_url = "https://britney-proposition-can-friends.trycloudflare.com"
+application_url = "https://street-cingular-administered-balloon.trycloudflare.com"
 embedded = true
 
 [build]
@@ -21,9 +21,9 @@ scopes = "write_cart_transforms,write_products"
 
 [auth]
 redirect_urls = [
-  "https://britney-proposition-can-friends.trycloudflare.com/auth/callback",
-  "https://britney-proposition-can-friends.trycloudflare.com/auth/shopify/callback",
-  "https://britney-proposition-can-friends.trycloudflare.com/api/auth/callback"
+  "https://street-cingular-administered-balloon.trycloudflare.com/auth/callback",
+  "https://street-cingular-administered-balloon.trycloudflare.com/auth/shopify/callback",
+  "https://street-cingular-administered-balloon.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

@@ -35,6 +35,9 @@ export async function getCurrentAppInstallationWithMetafield(admin: AdminApiCont
           query{
             currentAppInstallation {
               id
+              app{
+                id
+              }
               metafield(key: "${key}", namespace: "${namespace}"){
                 namespace
                 key
