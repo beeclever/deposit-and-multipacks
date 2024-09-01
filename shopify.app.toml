@@ -3,7 +3,7 @@
 client_id = "c863672661594d3bdcccdcd2416b1e4d"
 name = "Beverage Deposit & Multipacks"
 handle = "deposit-and-multipacks"
-application_url = "https://chen-ff-achieving-large.trycloudflare.com"
+application_url = "https://matrix-stand-enzyme-gotta.trycloudflare.com"
 embedded = true
 
 [build]
@@ -21,9 +21,9 @@ scopes = "write_cart_transforms,write_products"
 
 [auth]
 redirect_urls = [
-  "https://chen-ff-achieving-large.trycloudflare.com/auth/callback",
-  "https://chen-ff-achieving-large.trycloudflare.com/auth/shopify/callback",
-  "https://chen-ff-achieving-large.trycloudflare.com/api/auth/callback"
+  "https://matrix-stand-enzyme-gotta.trycloudflare.com/auth/callback",
+  "https://matrix-stand-enzyme-gotta.trycloudflare.com/auth/shopify/callback",
+  "https://matrix-stand-enzyme-gotta.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

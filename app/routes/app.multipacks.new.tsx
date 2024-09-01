@@ -22,8 +22,9 @@ import {
   Icon,
   Divider,
   Tag,
+  Tooltip,
 } from "@shopify/polaris";
-import { CheckIcon, ProductIcon } from "@shopify/polaris-icons";
+import { CheckIcon, MagicIcon, ProductIcon } from "@shopify/polaris-icons";
 import { ShopifyAPI } from "clever_tools";
 import { useEffect, useState } from "react";
 import { getCurrentAppInstallationWithMetafield, setMetafields, variantDelete } from "~/helpers.server";
@@ -280,7 +281,11 @@ export default function NewMultipack() {
           <BlockStack gap="300">
             <Card>
               <BlockStack gap="300">
-                <TextField label="Title" value={title} autoComplete="off" onChange={setTitle}></TextField>
+                <TextField 
+                  label="Title" 
+                  value={title} 
+                  autoComplete="off" 
+                  onChange={setTitle}/>
               </BlockStack>
             </Card>
             <Card>
