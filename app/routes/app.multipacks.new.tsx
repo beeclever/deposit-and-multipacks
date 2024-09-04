@@ -66,7 +66,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     variables: {
       input: {
         title: data.title, 
-        vendor: "Hyghstreet",
+        vendor: "beeclever",
         customProductType: "Multipack",
         status: "DRAFT",
         claimOwnership:{
