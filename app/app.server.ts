@@ -136,7 +136,7 @@ export const install = async (admin: AdminApiContext) => {
     variables: {
       input: {
         title: "Deposit", 
-        vendor: "Hyghstreet",
+        vendor: "beeclever",
         productOptions: [
           {
             name: "Type",
