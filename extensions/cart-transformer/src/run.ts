@@ -40,7 +40,7 @@ export function run(input: RunInput): FunctionRunResult {
 
     const baseVariantId = variant.multipackBaseVariant?.value ?? line.merchandise.id;
     const quantity = Number(variant.multipackQuantity?.value ?? 1)
-    const price = line.cost.amountPerQuantity.amount / quantity
+    const price = (line.cost.amountPerQuantity.amount / quantity).toPrecision(2)
 
     return {
       expand: {
@@ -52,7 +52,7 @@ export function run(input: RunInput): FunctionRunResult {
             price: {
               adjustment: {
                 fixedPricePerUnit: {
-                  amount: price 
+                  amount: String(price) 
                 }
               }
             }

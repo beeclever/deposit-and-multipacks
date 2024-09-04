@@ -1,12 +1,12 @@
-name: Deploy Zerolabs
+name: Deploy main
 on:
   push:
     branches:
-      - main
+      - zerolabs
 jobs:
   deploy:
     uses: beeclever/actions/.github/workflows/deploy-shopify-app.yml@v2
     with:
-      config-name: "example"
-      SHOPIFY_APP_URL: "https://zerolabs-deposit.bs2.beeclever-apps.de"
+      config-name: "zerolabs"
+      SHOPIFY_APP_URL: "https://funky-whole-arachnid.ngrok-free.app"
     secrets: inherit
