@@ -180,7 +180,10 @@ export const install = async (admin: AdminApiContext) => {
         ...DEPOSIT_VARIANTS.map(v => ({
           inventoryPolicy: "CONTINUE",
           price: v.price,
-          requiresShipping: false,
+          inventoryItem:{
+            requiresShipping: false,
+            tracked: false
+          },
           optionValues: {
             optionName: "Type",
             name: v.name
